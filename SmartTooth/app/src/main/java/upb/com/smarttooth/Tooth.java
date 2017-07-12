@@ -35,11 +35,7 @@ public class Tooth {
         bluetoothAdapter.stopLeScan(cbLocate);
     }
 
-    public class CharacWrapper {
-        boolean write;
-        BluetoothGattCharacteristic c;
-        public int value;
-    }
+
 
     static public boolean online;
     private BluetoothAdapter bluetoothAdapter;
@@ -134,7 +130,7 @@ public class Tooth {
         @Override
         public void onCharacteristicWrite(BluetoothGatt gatt, final BluetoothGattCharacteristic characteristic, int status) {
             //watchdog.reset();
-            System.out.println("Characteristic " + getName(characteristic.getUuid().toString()) + "was written ");
+            System.out.println("Characteristic " + CharacWrapper.getName(characteristic.getUuid().toString()) + "was written ");
             CharacWrapper dr = null;
             for (CharacWrapper cw : map) {
                 if (cw.c == characteristic && cw.write) {
@@ -304,37 +300,6 @@ public class Tooth {
                 //this.watchdog.start();
             }
         }
-    }
-
-    private String getName(String UUID) {
-        if (UUID.equals(Config.TOOTH_UUID_OUT_ST)) {
-            return "Start";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_V)) {
-            return "Voltage";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_T1)) {
-            return "T1";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_T2)) {
-            return "T2";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_T3)) {
-            return "T3";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_T4)) {
-            return "T4";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_TA)) {
-            return "TA";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_TT)) {
-            return "TT";
-        }
-        if (UUID.equals(Config.TOOTH_UUID_OUT_TP)) {
-            return "TP";
-        }
-        return null;
     }
 
     private int remapFormat(int id) {
