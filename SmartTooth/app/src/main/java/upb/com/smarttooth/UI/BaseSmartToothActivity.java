@@ -36,6 +36,7 @@ public abstract class BaseSmartToothActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TransientStorage.setTopMostActivity(this);
         if (!testPermissions()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(requiredPermissions, REQUEST_PERMISSIONS);

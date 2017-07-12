@@ -7,7 +7,6 @@ public class CharacWrapper {
     boolean write;
     BluetoothGattCharacteristic c;
 
-
     public static String getName(String UUID) {
         if (UUID.equals(Config.TOOTH_UUID_OUT_ST)) {
             return "Start";
